@@ -1,4 +1,4 @@
 TimerTool
 =========
 
-Little tool to get and the the windows timer values
+Little tool to get and set the the windows timer values.
