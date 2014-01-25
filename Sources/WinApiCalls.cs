@@ -15,9 +15,9 @@ namespace TimerTool
 	[StructLayout(LayoutKind.Sequential)]
 	public struct TimerCaps
 	{
-		public ulong PeriodMin;
-		public ulong PeriodMax;
-		public ulong PeriodCurrent;
+		public uint PeriodMin;
+		public uint PeriodMax;
+		public uint PeriodCurrent;
 	};
 	
 	/// <summary>
@@ -27,13 +27,23 @@ namespace TimerTool
 	{
 
 		[DllImport("ntdll.dll", SetLastError=true)]
-		private static extern int NtQueryTimerResolution(out ulong MinimumResolution, out ulong MaximumResolution, out ulong ActualResolution);
+		private static extern NtStatus NtQueryTimerResolution(out uint MinimumResolution, out uint MaximumResolution, out uint ActualResolution);
+		
+		[DllImport("ntdll.dll", SetLastError=true)]
+		private static extern NtStatus NtSetTimerResolution(uint DesiredResolution, bool SetResolution, ref uint CurrentResolution);
 		
 		public static TimerCaps QueryTimerResolution()
 		{
 			var caps = new TimerCaps();
 			var result = NtQueryTimerResolution(out caps.PeriodMin, out caps.PeriodMax, out caps.PeriodCurrent);
 			return caps;
+		}
+		
+		public static ulong SetTimerResolution(uint timerResolutionIn100nsUnits, bool doSet = true)
+		{
+			uint currentRes = 0;
+			var result = NtSetTimerResolution(timerResolutionIn100nsUnits, doSet, ref currentRes);
+			return currentRes;
 		}
 		
 		/// <summary>TimeBeginPeriod(). See the Windows API documentation for details.</summary>
@@ -47,4 +57,5 @@ namespace TimerTool
 		public static extern uint TimeEndPeriod(uint uMilliseconds);
 		
 	}
+	
 }

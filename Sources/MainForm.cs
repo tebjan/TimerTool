@@ -38,7 +38,9 @@ namespace TimerTool
 		private void DisplayTimerCaps()
 		{
 			var caps = WinApiCalls.QueryTimerResolution();
-			MinMaxLabel.Text = "Current: " + (caps.PeriodCurrent/10000.0) + " Min: " + (caps.PeriodMin/10000.0) + " Max: " + (caps.PeriodMax/10000.0);
+			CurrentLabel.Text = "Current: " + (caps.PeriodCurrent/10000.0) + " ms";
+			MinLabel.Text = "Min: " + (caps.PeriodMin/10000.0) + " ms";
+			MaxLabel.Text = "Max: " + (caps.PeriodMax/10000.0) + " ms";
 		}
 		
 		void Timer1Tick(object sender, EventArgs e)
@@ -46,15 +48,14 @@ namespace TimerTool
 			DisplayTimerCaps();
 		}
 		
-		void BeginButtonClick(object sender, EventArgs e)
+		void SetTimerButtonClick(object sender, EventArgs e)
 		{
-			WinApiCalls.TimeBeginPeriod((uint)numericUpDown1.Value);
+			WinApiCalls.SetTimerResolution((uint)(numericUpDown2.Value * 10000));
 		}
 		
-		void EndButtonClick(object sender, EventArgs e)
+		void UnsetTimerClick(object sender, EventArgs e)
 		{
-			WinApiCalls.TimeEndPeriod((uint)numericUpDown1.Value);
+			WinApiCalls.SetTimerResolution(0, false);
 		}
-	
 	}
 }
