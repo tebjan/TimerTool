@@ -22,4 +22,4 @@ C:\PathToTool\TimerTool.exe -t 0.5 -minimized
 
 Download the compiled program here: http://vvvv.org/contribution/windows-system-timer-tool
 
-If you find this useful, [please donate some dev bucks on PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2DNX2JBBKED8Q), thanks!
+If you find this useful, please [donate some dev bucks on PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2DNX2JBBKED8Q), thanks!
