@@ -20,6 +20,12 @@ e.g. put a .bat file into your autostart with the following code:
 C:\PathToTool\TimerTool.exe -t 0.5 -minimized
 ```
 
+Or if you want to run it automatically at startup and hide the cmd after execution, update the bat file from above and replace with:
+```
+start "" "C:\PathToTool\TimerTool.exe" -t 0.5 -minimized
+exit
+```
+
 Download the compiled program here: http://vvvv.org/contribution/windows-system-timer-tool
 
 If you find this useful, please [donate some dev bucks on PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2DNX2JBBKED8Q), thanks!
